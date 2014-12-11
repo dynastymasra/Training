@@ -14,13 +14,17 @@ import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- *
- * @author Dynastymasra
+ * Author   : @dynastymasra
+ * User     : Dimas Ragil T
+ * Email    : dynastymasra@gmail.com
+ * LinkedIn : http://www.linkedin.com/in/dynastymasra
+ * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public class MainView extends javax.swing.JFrame {
 
@@ -107,6 +111,7 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pelatihan Java SE");
+        setIconImage(new ImageIcon(getClass().getResource("/images/squarecode16.png")).getImage());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 

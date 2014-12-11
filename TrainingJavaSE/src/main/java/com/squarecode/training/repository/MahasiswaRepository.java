@@ -15,8 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Dynastymasra
+ * Author   : @dynastymasra
+ * User     : Dimas Ragil T
+ * Email    : dynastymasra@gmail.com
+ * LinkedIn : http://www.linkedin.com/in/dynastymasra
+ * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public class MahasiswaRepository {
     private Connection connection;

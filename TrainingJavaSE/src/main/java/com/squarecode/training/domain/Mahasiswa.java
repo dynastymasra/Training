@@ -7,8 +7,11 @@
 package com.squarecode.training.domain;
 
 /**
- *
- * @author Dynastymasra
+ * Author   : @dynastymasra
+ * User     : Dimas Ragil T
+ * Email    : dynastymasra@gmail.com
+ * LinkedIn : http://www.linkedin.com/in/dynastymasra
+ * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public class Mahasiswa {
     private String nim;
