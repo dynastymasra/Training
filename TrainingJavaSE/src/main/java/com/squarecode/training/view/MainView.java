@@ -5,10 +5,11 @@
  */
 package com.squarecode.training.view;
 
+import com.squarecode.training.ApplicationContext;
+import com.squarecode.training.controller.MahasiswaController;
 import com.squarecode.training.domain.Mahasiswa;
 import com.squarecode.training.model.RowHeader;
 import com.squarecode.training.model.TableModelMahasiswa;
-import com.squarecode.training.repository.MahasiswaRepository;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Author   : @dynastymasra
@@ -29,6 +31,9 @@ import javax.swing.JTable;
 public class MainView extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
+    private ApplicationContext applicationContext = new ApplicationContext();
+    private AnnotationConfigApplicationContext appx = applicationContext.annotationConfigApplicationContext();
+    private MahasiswaController mahasiswaController = appx.getBean(MahasiswaController.class);
     private Dimension dimension;
     private TableModelMahasiswa tableModelMahasiswa;
     private Mahasiswa mahasiswa;
@@ -59,8 +64,7 @@ public class MainView extends javax.swing.JFrame {
         jScrollPane1.setRowHeaderView(rowTable);
         jScrollPane1.setCorner(JScrollPane.UPPER_LEFT_CORNER, rowTable.getTableHeader());
 
-        MahasiswaRepository insert = new MahasiswaRepository();
-        tableModelMahasiswa = new TableModelMahasiswa(insert.findAllData());
+        tableModelMahasiswa = new TableModelMahasiswa(mahasiswaController.findAll());
         jTable1.setModel(tableModelMahasiswa);
     }
 
@@ -303,8 +307,11 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MahasiswaRepository insert = new MahasiswaRepository();
-        if (insert.insert(jTextField2.getText(), jTextField3.getText(), jTextArea1.getText())) {
+        Mahasiswa m = new Mahasiswa();
+        m.setNim(jTextField2.getText());
+        m.setNama(jTextField3.getText());
+        m.setAlamat(jTextArea1.getText());
+        if (mahasiswaController.save(m)) {
             JOptionPane.showMessageDialog(this, "Insert Data Success!", "Insert Success", JOptionPane.INFORMATION_MESSAGE);
             jButton2.setEnabled(true);
             jButton3.setEnabled(false);
@@ -327,8 +334,11 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        MahasiswaRepository insert = new MahasiswaRepository();
-        if (insert.update(jTextField2.getText(), jTextField3.getText(), jTextArea1.getText(), mahasiswa.getNim())) {
+        Mahasiswa m = new Mahasiswa();
+        m.setNim(jTextField2.getText());
+        m.setNama(jTextField3.getText());
+        m.setAlamat(jTextArea1.getText());
+        if (mahasiswaController.update(mahasiswa.getId(), m)) {
             JOptionPane.showMessageDialog(this, "Update Data Success!", "Update Success", JOptionPane.INFORMATION_MESSAGE);
             jButton2.setEnabled(true);
             jButton3.setEnabled(false);
@@ -362,9 +372,8 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        MahasiswaRepository insert = new MahasiswaRepository();
-        if (insert.delete(jTextField2.getText())) {
+        // TODO add your handling code here:        
+        if (mahasiswaController.delete(mahasiswa.getId())) {
             JOptionPane.showMessageDialog(this, "Delete Data Success!", "Update Success", JOptionPane.INFORMATION_MESSAGE);
             jButton2.setEnabled(true);
             jButton3.setEnabled(false);
