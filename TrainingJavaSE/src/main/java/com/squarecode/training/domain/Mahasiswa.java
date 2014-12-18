@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,10 +32,15 @@ public class Mahasiswa {
     private Long id;
     @Column(name = "MAHASISWA_NIM", unique = true, nullable = false)
     private String nim;
-    @Column(name = "MAHASISWA_NAMA", nullable = false)
+    @Column(name = "MAHASISWA_JURUSAN", nullable = false)
     private String nama;
-    @Column(name = "MAHASISWA_ALAMAT", nullable = false)
+    @Column(name = "MAHASISWA_ALAMAT_SEKARANG", nullable = false)
     private String alamat;
+    @Column(name = "MAHASISWA_EMAIL", nullable = false)
+    private String email;
+    @ManyToOne
+    @JoinColumn(name = "IDENTITY_ID", nullable = false)
+    private Identity identity;
 
     public Long getId() {
         return id;
@@ -65,5 +72,21 @@ public class Mahasiswa {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }        
+
+    public Identity getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(Identity identity) {
+        this.identity = identity;
+    }        
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }        
 }
